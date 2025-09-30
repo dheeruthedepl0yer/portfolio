@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DheeruTheDeployer | DevOps Engineer Portfolio</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+  <style>
+    :root {
+      --accent: #00d4ff;
+      --bg: #0f2027;
+      --card: #1b2735;
+      --cardH: #243447;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: var(--bg);
+      color: #fff;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    a {
+      color: inherit
+    }
+
+    /* Layers */
+    #particles-js {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .float-icons {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .float-icons i {
+      position: absolute;
+      opacity: .15;
+      font-size: 26px;
+      animation: floatUp linear infinite;
+      color: #fff;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(110vh) rotate(0deg)
+      }
+
+      to {
+        transform: translateY(-20vh) rotate(360deg)
+      }
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 24px;
+      background: rgba(0, 0, 0, .45);
+      backdrop-filter: blur(12px);
+      animation: fadeInDown 700ms ease;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1
+      }
+    }
+
+    nav .brand a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+
+    nav .links a {
+      position: relative;
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 600;
+      transition: transform .15s ease, color .3s ease;
+    }
+
+    nav .links a:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: .3s;
+    }
+
+    nav .links a:hover {
+      transform: scale(1.15);
+      color: var(--accent);
+    }
+
+    nav .links a:hover:after {
+      width: 100%;
+    }
+
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 90px 8% 60px;
+      scroll-margin-top: 80px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin: 0 0 32px;
+      text-align: center;
+    }
+
+    #hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    .profile-pic {
+      position: absolute;
+      top: 100px;
+      right: 40px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      object-fit: cover;
+
+      /* Animation */
+      animation: floatPic 4s ease-in-out infinite,
+        rotatePic 20s linear infinite,
+        glowPulse 3s ease-in-out infinite;
+    }
+
+    /* Float up/down */
+    @keyframes floatPic {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    /* Slow rotation */
+    @keyframes rotatePic {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Neon glow pulse */
+    @keyframes glowPulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 6px var(--accent), 0 0 12px var(--accent);
+      }
+
+      50% {
+        box-shadow: 0 0 18px var(--accent), 0 0 36px var(--accent);
+      }
+    }
+
+    @keyframes clickSpinBounce {
+      0% {
+        transform: scale(1) rotate(0deg);
+      }
+
+      30% {
+        transform: scale(1.2) rotate(360deg);
+      }
+
+      60% {
+        transform: scale(0.9) rotate(720deg);
+      }
+
+      100% {
+        transform: scale(1) rotate(1080deg);
+      }
+    }
+
+    .profile-pic.click-anim {
+      animation: clickSpinBounce 1s ease-in-out;
+    }
+
+    /* Circuit-board animation background */
+    .circuit-bg {
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle at 2px 2px, rgba(0, 212, 255, 0.3) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: circuitMove 20s linear infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @keyframes circuitMove {
+      from {
+        background-position: 0 0;
+      }
+
+      to {
+        background-position: 120px 120px;
+      }
+    }
+
+    .typed-text {
+      color: var(--accent);
+      font-weight: 600
+    }
+
+    .social-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px
+    }
+
+    .social-links a {
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: .95rem
+    }
+
+    .social-links i {
+      font-size: 2rem;
+      margin-bottom: 6px
+    }
+
+    .social-links a:hover {
+      color: var(--accent)
+    }
+
+    /* Hero search */
+    /* .search-container{margin-top:25px;position:relative;width:80%;max-width:520px;}
+    .search-container input{width:100%;padding:12px 16px;border-radius:25px;border:none;outline:none;font-size:1rem;text-align:center;
+      background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(0,212,255,0.4);}
+    .search-container input:focus{box-shadow:0 0 12px var(--accent);} */
+
+    /* Typing cursor style for the Ask DheeruBot label */
+    .search-container .ask-dheerubot .typed-cursor,
+    .search-container .ask-dheerubot .typed-cursor--blink {
+      color: var(--accent);
+      margin-left: 2px;
+      opacity: .9;
+      filter: drop-shadow(0 0 4px rgba(0, 212, 255, .6));
+    }
+
+    /* Optional: subtle fade-in on each phrase */
+    .search-container .ask-dheerubot .ask-text {
+      animation: askPhraseFade 600ms ease;
+    }
+
+    @keyframes askPhraseFade {
+      from {
+        opacity: 0;
+        transform: translateY(2px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+
+    .search-container {
+      margin-top: 25px;
+      position: relative;
+      width: 80%;
+      max-width: 520px;
+    }
+
+    .search-container .search-icon {
+      position: absolute;
+      top: 50%;
+      left: 16px;
+      transform: translateY(-50%);
+      color: var(--accent);
+      font-size: 1.2rem;
+      pointer-events: none;
+    }
+
+    .search-container input {
+      width: 100%;
+      padding: 12px 16px 12px 40px;
+      /* leave space for robot icon */
+      border-radius: 25px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      text-align: left;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(0, 212, 255, 0.4);
+    }
+
+    /* Title above search bar */
+    .ask-dheerubot {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      animation: fadeGlow 2.5s ease-in-out infinite;
+    }
+
+    .ask-dheerubot i {
+      font-size: 1.4rem;
+    }
+
+    #hero {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* already true; safe to repeat */
+    /* Position context (safe if repeated) */
+    #hero .search-container {
+      order: 1;
+      position: relative;
+      /* safety, ok if already set */
+      padding-bottom: 32px;
+      /*
+  margin-top: 16px;       /* space from top of hero */
+      margin-bottom: 36px;
+      /* space BETWEEN Ask DheeruBot/search and the title */
+    }
+
+
+
+    /* Animated label placed right above the input's left edge */
+    #hero .search-container .ask-dheerubot {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      /* aligns with input's left BORDER */
+      /* If you prefer align with the input TEXT (inside padding), use: left: 16px; */
+      bottom: auto;
+      /* sits just above the bar */
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      line-height: 1;
+      background: linear-gradient(90deg, #00d4ff, #7af5ff, #00a3ff, #00d4ff);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      /* gradient text */
+      filter: drop-shadow(0 0 6px rgba(0, 212, 255, .35));
+      animation: askShimmer 5s linear infinite, askFloat 3s ease-in-out infinite;
+      z-index: 2;
+      pointer-events: none;
+      /* don’t steal clicks from the input */
+    }
+
+    #hero .search-container .ask-dheerubot i {
+      font-size: 1.1rem;
+    }
+
+    @keyframes askShimmer {
+      0% {
+        background-position: 0%
+      }
+
+      100% {
+        background-position: 200%
+      }
+    }
+
+    @keyframes askFloat {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-2px)
+      }
+    }
+
+    /* === Dynamic cloud/automation minis (no layout changes) === */
+    /* Text pill for brands without FA icons */
+    .float-icons .dyn.tag {
+      position: absolute;
+      left: 0;
+      top: 0;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 1.25;
+      letter-spacing: .2px;
+      color: #c7f7ff;
+      background: rgba(0, 212, 255, .12);
+      border: 1px solid rgba(0, 212, 255, .28);
+      box-shadow: 0 0 8px rgba(0, 212, 255, .15);
+      opacity: .9;
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      will-change: transform;
+      z-index: 0;
+    }
+
+
+
+
+    /* Softer, faded neon glow for the input (override earlier styles) */
+    #hero .search-container input {
+      text-align: left !important;
+      border: 2px solid rgba(0, 212, 255, 0.25) !important;
+      background: rgba(255, 255, 255, 0.04) !important;
+      box-shadow: 0 0 6px rgba(0, 212, 255, .25), 0 0 12px rgba(0, 212, 255, .15);
+      transition: box-shadow .3s ease, border-color .3s ease;
+      animation: inputGlow 4s ease-in-out infinite;
+    }
+
+    #hero .search-container input:focus {
+      border-color: var(--accent) !important;
+      box-shadow: 0 0 10px rgba(0, 212, 255, .55), 0 0 22px rgba(0, 212, 255, .25);
+    }
+
+    @keyframes inputGlow {
+
+      0%,
+      100% {
+        box-shadow: 0 0 6px rgba(0, 212, 255, .25), 0 0 12px rgba(0, 212, 255, .15);
+      }
+
+      50% {
+        box-shadow: 0 0 14px rgba(0, 212, 255, .45), 0 0 24px rgba(0, 212, 255, .20);
+      }
+    }
+
+    .tags .tag {
+      cursor: pointer;
+    }
+
+    #suggestions {
+      list-style: none;
+      padding: 0;
+      margin: 6px auto 0;
+      max-width: 520px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.85);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    #suggestions.hidden {
+      display: none
+    }
+
+    #suggestions li {
+      padding: 10px 14px;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    #suggestions li span.cat {
+      font-weight: 800;
+      color: var(--accent);
+      min-width: 110px;
+      text-transform: uppercase;
+      font-size: .8rem;
+    }
+
+    #suggestions li:hover {
+      background: var(--accent);
+      color: #000;
+    }
+
+    #suggestions li .match {
+      flex: 1
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center
+    }
+
+    .card,
+    .skill-card {
+      background: rgba(27, 39, 53, .92);
+      border-radius: 12px;
+      padding: 20px;
+      color: #fff;
+      text-decoration: none;
+      transition: transform .25s, background .25s;
+      flex: 1 1 calc(45% - 10px);
+      min-width: 280px;
+    }
+
+    .card:hover,
+    .skill-card:hover {
+      transform: translateY(-6px);
+      background: rgba(36, 52, 71, .95);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.15rem
+    }
+
+    .card p {
+      margin: 0;
+      font-size: .98rem;
+      line-height: 1.55
+    }
+
+    .tag,
+    .skill-badge {
+      display: inline-block;
+      background: #fff;
+      color: #000;
+      padding: 6px 10px;
+      border-radius: 999px;
+      margin: 4px;
+      font-size: .82rem;
+      font-weight: 700;
+    }
+
+    .tags {
+      margin-top: 10px
+    }
+
+    .project-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px
+    }
+
+    .project-info {
+      flex: 3;
+      text-align: left;
+    }
+
+    .project-thumb {
+      flex: 1;
+      text-align: right;
+    }
+
+    .project-thumb img {
+      width: 120px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px
+    }
+
+    footer {
+      padding: 24px;
+      text-align: center;
+      background: #111;
+      border-top: 1px solid rgba(255, 255, 255, .08)
+    }
+
+    @media (max-width:900px) {
+      .profile-pic {
+        position: static;
+        margin-bottom: 8px
+      }
+
+      .project-card {
+        flex-direction: column;
+        align-items: flex-start
+      }
+
+      .project-thumb {
+        align-self: flex-end
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="circuit-bg"></div>
+  <div id="particles-js"></div>
+  <!-- Floating DevOps icons (Font Awesome) -->
+  <div class="float-icons" aria-hidden="true">
+    <i class="fab fa-docker" style="left:6%; animation-duration:24s;"></i>
+    <i class="fab fa-aws" style="left:18%; font-size:32px; animation-duration:30s; animation-delay:3s;"></i>
+    <i class="fas fa-code-branch" style="left:30%; animation-duration:28s; animation-delay:6s;"></i>
+    <i class="fas fa-gears" style="left:45%; font-size:34px; animation-duration:26s; animation-delay:2s;"></i>
+    <i class="fas fa-cloud" style="left:58%; animation-duration:32s; animation-delay:4s;"></i>
+    <i class="fas fa-shield-halved" style="left:72%; animation-duration:27s; animation-delay:1s;"></i>
+    <i class="fab fa-gitlab" style="left:84%; font-size:30px; animation-duration:33s; animation-delay:5s;"></i>
+    <i class="fas fa-robot" style="left:10%; font-size:32px; animation-duration:36s; animation-delay:4s;"></i>
+    <i class="fas fa-terminal" style="left:40%; font-size:28px; animation-duration:30s; animation-delay:2s;"></i>
+    <i class="fas fa-cogs" style="left:65%; font-size:34px; animation-duration:38s; animation-delay:6s;"></i>
+    <i class="fas fa-project-diagram" style="left:88%; font-size:30px; animation-duration:32s; animation-delay:3s;"></i>
+
+  </div>
+
+
+  <!-- Navbar -->
+  <nav>
+    <div class="brand"><a href="#hero">DheeruTheDeployer</a></div>
+    <div class="links">
+      <a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a>
+      <a href="#experience">Experience</a><a href="#blogs">Blogs</a>
+      <a href="#certifications">Certifications</a><a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <img src="profile.jpg" alt="DheeruTheDeployer" class="profile-pic" />
+    <h1>Hi, I’m DheeruTheDeployer</h1>
+    <p><span class="typed-text"></span></p>
+
+    <!-- Search -->
+    <!-- <div class="search-container">
+      <input id="searchBar" type="text" placeholder="Search projects, blogs, skills, experience, certifications…" autocomplete="off"/>
+      <ul id="suggestions" class="hidden"></ul>
+    </div> -->
+    <!-- Ask DheeruBot -->
+    <div class="search-container">
+      <!-- NEW: animated label aligned to the bar start -->
+      <div class="ask-dheerubot">
+        <i class="fas fa-robot"></i><span class="ask-text"></span>
+      </div>
+
+
+      <input id="searchBar" type="text" placeholder="Type your query about skills, projects, blogs…"
+        autocomplete="off" />
+      <ul id="suggestions" class="hidden"></ul>
+    </div>
+
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/dheeraj-kumar-gupta-01bba2107/" target="_blank"><i
+          class="fab fa-linkedin"></i>LinkedIn</a>
+      <a href="https://github.com/dheeruthedepl0yer" target="_blank"><i class="fab fa-github"></i>GitHub</a>
+      <a href="https://medium.com/@dheeruthedeployer" target="_blank"><i class="fab fa-medium"></i>Medium</a>
+      <a href="mailto:dheerajgupta92100@yahoo.com"><i class="fa fa-envelope"></i>Email</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="grid">
+      <div class="card">
+        <p>
+          <strong>DevOps / MLOps / GitOps / SecOps Professional</strong><br>
+          Experienced in managing multi-cloud environments (GCP, AWS, Azure)
+          and optimizing infrastructure for high scalability, performance,
+          and security.
+        </p>
+
+        <p>
+          <strong>Automation & Infrastructure Optimization:</strong> Expertise in
+          automating infrastructure provisioning and CI/CD pipeline setup to
+          streamline development cycles.
+        </p>
+
+        <p>
+          <strong>Security & Compliance:</strong> Skilled in implementing security
+          policies using AWS Config, Microsoft Sentinel, GCP Service Parameters,
+          and OPA Policies, ensuring compliance and governance in DevSecOps
+          environments.
+        </p>
+
+        <p>
+          <strong>Cloud Infrastructure & Migrations:</strong> Hands-on experience
+          with on-premise data centers, cloud migrations, and designing robust,
+          scalable architectures.
+        </p>
+
+        <p>
+          <strong>Containerization & Microservices:</strong> Specialized in
+          transforming monolithic applications to microservices architecture
+          and managing containerized deployments using on-premise and managed EKS.
+        </p>
+
+        <p>
+          <strong>Landing Zones Setup:</strong> Experience in setting up and
+          managing GCP & AWS Landing Zones from scratch, ensuring secure and
+          scalable cloud environments.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="grid searchable">
+      <a href="https://github.com/yourgithub/gitops-platform" target="_blank" class="card project-card">
+        <div class="project-info">
+          <h3>GitOps Platform</h3>
+          <p>Multi-cluster GitOps with ArgoCD + Helm and policy-as-code.</p>
+          <div class="tags"><span class="tag">Kubernetes</span><span class="tag">ArgoCD</span><span
+              class="tag">Helm</span><span class="tag">GitOps</span></div>
+        </div>
+        <div class="project-thumb"><img src="thumb.jpg" alt="thumb"
+            onerror="this.src='https://as2.ftcdn.net/v2/jpg/03/96/98/33/1000_F_396983381_AcuGFHQbNn7D9eercXFpOecN7d7B5F66.jpg'">
+        </div>
+      </a>
+      <a href="https://github.com/yourgithub/monitoring-stack" target="_blank" class="card project-card">
+        <div class="project-info">
+          <h3>Monitoring Stack</h3>
+          <p>Prometheus + Grafana + Thanos with SLOs and multi-env federation.</p>
+          <div class="tags"><span class="tag">Prometheus</span><span class="tag">Grafana</span><span
+              class="tag">Thanos</span><span class="tag">SLO</span></div>
+        </div>
+        <div class="project-thumb"><img src="thumb.jpg" alt="thumb"
+            onerror="this.src='https://as2.ftcdn.net/v2/jpg/03/96/98/33/1000_F_396983381_AcuGFHQbNn7D9eercXFpOecN7d7B5F66.jpg'">
+        </div>
+      </a>
+      <a href="https://github.com/yourgithub/cicd-pipeline" target="_blank" class="card project-card">
+        <div class="project-info">
+          <h3>CI/CD Pipeline</h3>
+          <p>GitHub Actions + Tekton multi-arch builds, SBOM attestation, canary deploys.</p>
+          <div class="tags"><span class="tag">Tekton</span><span class="tag">GitHub Actions</span><span
+              class="tag">Docker</span><span class="tag">SBOM</span></div>
+        </div>
+        <div class="project-thumb"><img src="thumb.jpg" alt="thumb"
+            onerror="this.src='https://as2.ftcdn.net/v2/jpg/03/96/98/33/1000_F_396983381_AcuGFHQbNn7D9eercXFpOecN7d7B5F66.jpg'">
+        </div>
+      </a>
+      <a href="https://github.com/yourgithub/terraform-infra" target="_blank" class="card project-card">
+        <div class="project-info">
+          <h3>Terraform Infra</h3>
+          <p>Modular infra-as-code for AWS with automated drift detection.</p>
+          <div class="tags"><span class="tag">Terraform</span><span class="tag">AWS</span><span
+              class="tag">CloudFormation</span></div>
+        </div>
+        <div class="project-thumb"><img src="thumb.jpg" alt="thumb"
+            onerror="this.src='https://as2.ftcdn.net/v2/jpg/03/96/98/33/1000_F_396983381_AcuGFHQbNn7D9eercXFpOecN7d7B5F66.jpg'">
+        </div>
+      </a>
+      <a href="https://github.com/yourgithub/aiml-pipeline" target="_blank" class="card project-card">
+        <div class="project-info">
+          <h3>AI/ML Pipeline</h3>
+          <p>MLFlow + Kubeflow orchestration with feature store and model registry.</p>
+          <div class="tags"><span class="tag">MLFlow</span><span class="tag">Kubeflow</span><span class="tag">Vertex
+              AI</span></div>
+        </div>
+        <div class="project-thumb"><img src="thumb.jpg" alt="thumb"
+            onerror="this.src='https://as2.ftcdn.net/v2/jpg/03/96/98/33/1000_F_396983381_AcuGFHQbNn7D9eercXFpOecN7d7B5F66.jpg'">
+        </div>
+      </a>
+      <a href="https://github.com/yourgithub/iam-federation" target="_blank" class="card project-card">
+        <div class="project-info">
+          <h3>Secure IAM Federation</h3>
+          <p>Keycloak + Okta + SAML federation with least privilege and SSO.</p>
+          <div class="tags"><span class="tag">Keycloak</span><span class="tag">Okta</span><span
+              class="tag">SAML</span><span class="tag">IAM</span></div>
+        </div>
+        <div class="project-thumb"><img src="thumb.jpg" alt="thumb"
+            onerror="this.src='https://as2.ftcdn.net/v2/jpg/03/96/98/33/1000_F_396983381_AcuGFHQbNn7D9eercXFpOecN7d7B5F66.jpg'">
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="grid searchable">
+      <div class="skill-card">
+        <h3>Languages</h3>
+        <span class="skill-badge">Bash</span><span class="skill-badge">Python</span><span
+          class="skill-badge">Nodejs</span><span class="skill-badge">Go</span><span class="skill-badge">Java</span><span
+          class="skill-badge">YAML</span>
+      </div>
+      <div class="skill-card">
+        <h3>IAM</h3>
+        <span class="skill-badge">GCP Cloud Identity</span><span class="skill-badge">AWS SSO</span><span
+          class="skill-badge">Microsoft AD</span><span class="skill-badge">Keycloak</span><span
+          class="skill-badge">SAML</span><span class="skill-badge">Okta</span><span class="skill-badge">JumpCloud</span>
+      </div>
+      <div class="skill-card">
+        <h3>Cloud Platforms</h3>
+        <span class="skill-badge">AWS</span><span class="skill-badge">GCP</span><span
+          class="skill-badge">Azure</span><span class="skill-badge">Oracle</span><span
+          class="skill-badge">Confluent</span><span class="skill-badge">Vmware</span>
+      </div>
+      <div class="skill-card">
+        <h3>AI/ML</h3>
+        <span class="skill-badge">Sagemaker</span><span class="skill-badge">Vertex AI</span><span
+          class="skill-badge">MLFlow</span><span class="skill-badge">Kubeflow</span>
+      </div>
+      <div class="skill-card">
+        <h3>CI/CD Tools</h3>
+        <span class="skill-badge">Jenkins</span><span class="skill-badge">GitLab</span><span
+          class="skill-badge">CodePipeline</span><span class="skill-badge">CloudBuild</span>
+        <span class="skill-badge">Azure DevOps</span><span class="skill-badge">Harness</span><span
+          class="skill-badge">Bitbucket</span><span class="skill-badge">Tekton</span><span
+          class="skill-badge">Rio</span>
+        <span class="skill-badge">GitHub Actions</span><span class="skill-badge">ArgoCD</span><span
+          class="skill-badge">Spinnaker</span><span class="skill-badge">FluxCD</span><span
+          class="skill-badge">CircleCI</span>
+      </div>
+      <div class="skill-card">
+        <h3>Monitoring Tools</h3>
+        <span class="skill-badge">CloudWatch</span><span class="skill-badge">Stackdriver</span><span
+          class="skill-badge">Prometheus</span><span class="skill-badge">AlertManager</span>
+        <span class="skill-badge">Grafana</span><span class="skill-badge">Datadog</span><span
+          class="skill-badge">PagerDuty</span><span class="skill-badge">QRadar</span>
+        <span class="skill-badge">Thanos</span><span class="skill-badge">OpenSearch</span><span
+          class="skill-badge">Elasticsearch</span><span class="skill-badge">VictoriaMetrics</span>
+        <span class="skill-badge">Dynatrace</span><span class="skill-badge">Splunk</span>
+      </div>
+      <div class="skill-card">
+        <h3>Database</h3>
+        <span class="skill-badge">MySQL</span><span class="skill-badge">SQL Server</span><span
+          class="skill-badge">MongoDB</span><span class="skill-badge">PostgreSQL</span>
+        <span class="skill-badge">Redis/Memcache</span><span class="skill-badge">Elastic</span><span
+          class="skill-badge">Kafka</span><span class="skill-badge">BigQuery</span>
+      </div>
+      <div class="skill-card">
+        <h3>CDK/SDK</h3>
+        <span class="skill-badge">AWS</span><span class="skill-badge">Azure</span><span
+          class="skill-badge">GCP</span><span class="skill-badge">Keycloak</span><span
+          class="skill-badge">Openshift</span>
+      </div>
+      <div class="skill-card">
+        <h3>Containerization</h3>
+        <span class="skill-badge">Docker</span><span class="skill-badge">Kubernetes</span><span
+          class="skill-badge">Openshift</span><span class="skill-badge">EKS</span><span class="skill-badge">ECS</span>
+        <span class="skill-badge">AKS</span><span class="skill-badge">ACS</span><span
+          class="skill-badge">GKE</span><span class="skill-badge">Karpenter</span><span class="skill-badge">Istio</span>
+      </div>
+      <div class="skill-card">
+        <h3>Configuration Management/IaC</h3>
+        <span class="skill-badge">Ansible</span><span class="skill-badge">CloudFormation</span><span
+          class="skill-badge">Helm</span><span class="skill-badge">Packer</span><span
+          class="skill-badge">Puppet</span><span class="skill-badge">Terraform</span>
+      </div>
+      <div class="skill-card">
+        <h3>Security</h3>
+        <span class="skill-badge">Cloud Armor</span><span class="skill-badge">Checkpoint</span><span
+          class="skill-badge">F5</span><span class="skill-badge">AWS WAF</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="grid searchable">
+      <div class="card">
+        <h3>Senior L2 – orange business</h3>
+        <p>Built multi-cluster GitOps, Vault + ESO, and high-throughput CI/CD.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blogs -->
+  <section id="blogs">
+    <h2>Blogs</h2>
+    <div class="grid searchable">
+      <a href="https://medium.com/@dheeruthedeployer/technology-infrastructure-migration-gcrane-a-migration-bird-f9f10e223772"
+        target="_blank" class="card" data-tags="Azure, Google, Gcrane, Migration">
+        <h3>Gcrane - A Migration Bird</h3>
+        <p>Migrating Azure Container Registry artifacts to Google Artifact Registry</p>
+      </a>
+      <a href="https://medium.com/@dheeruthedeployer/azure-ad-aws-sso-integration-c60e2f9bac48" target="_blank"
+        class="card" data-tags="Azure, AWS SSO, Active Directory, User Management, Microsoft AD, SAML">
+        <h3>Azure AD — AWS SSO Integration</h3>
+        <p>Manage the AWS SSO with the External Identity federation through Azure Active Directory i.e the users will be
+          synced with AWS SSO from the Active directory</p>
+      </a>
+
+      <a href="https://medium.com/@yourmedium/gitops-vs-ci-cd" target="_blank" class="card">
+        <h3>GitOps vs CI/CD</h3>
+        <p>Why GitOps matters.</p>
+        <div class="tags"><span class="tag">GitOps</span><span class="tag">CI/CD</span></div>
+      </a>
+      <a href="https://medium.com/@yourmedium/terraform-best-practices" target="_blank" class="card">
+        <h3>Terraform Best Practices</h3>
+        <p>IaC with Terraform.</p>
+        <div class="tags"><span class="tag">Terraform</span><span class="tag">IaC</span></div>
+      </a>
+      <a href="https://medium.com/@yourmedium/secrets-in-k8s" target="_blank" class="card">
+        <h3>Secrets in K8s</h3>
+        <p>Vault + ESO integration.</p>
+        <div class="tags"><span class="tag">Vault</span><span class="tag">Security</span></div>
+      </a>
+      <a href="https://medium.com/@yourmedium/datadog-dashboards" target="_blank" class="card">
+        <h3>Datadog Dashboards</h3>
+        <p>Effective monitoring with Datadog.</p>
+        <div class="tags"><span class="tag">Datadog</span><span class="tag">Observability</span></div>
+      </a>
+      <a href="https://medium.com/@yourmedium/tekton-pipelines" target="_blank" class="card">
+        <h3>CI/CD with Tekton</h3>
+        <p>Building pipelines in Tekton.</p>
+        <div class="tags"><span class="tag">Tekton</span><span class="tag">Pipelines</span></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certifications">
+    <h2>Certifications</h2>
+    <div class="grid searchable">
+      <div class="card">Certified Kubernetes Administrator (CKA)</div>
+      <div class="card">HashiCorp Terraform Associate</div>
+      <div class="card">Microsoft Certified: Azure Administrator</div>
+      <div class="card">Google Cloud Architect</div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <h2>Education</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>B.Tech Computer Science</h3>
+        <p>Guru Gobind Singh Indraprastha University, 2015–2019</p>
+      </div>
+      <div class="card">
+        <h3>CBSE XII - Computer Science</h3>
+        <p>Gagan Bharti Sr. Secondary School, 2014</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="social-links">
+      <a href="mailto:dheerajgupta92100@yahoo.com"><i class="fa fa-envelope"></i>Email</a>
+      <a href="https://www.linkedin.com/in/dheeraj-kumar-gupta-01bba2107/" target="_blank"><i
+          class="fab fa-linkedin"></i>LinkedIn</a>
+      <a href="https://github.com/dheeruthedepl0yer" target="_blank"><i class="fab fa-github"></i>GitHub</a>
+      <a href="https://medium.com/@dheeruthedeployer" target="_blank"><i class="fab fa-medium"></i>Medium</a>
+    </div>
+  </section>
+
+  <footer>© 2025 DheeruTheDeployer</footer>
+
+  <script>
+    // Particles background with interactivity
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 100 }, "size": { "value": 3 }, "color": { "value": "#ffffff" },
+        "line_linked": { "enable": true, "distance": 140, "color": "#6be0ff", "opacity": 0.5, "width": 1 },
+        "move": { "enable": true, "speed": 2 }
+      },
+      "interactivity": {
+        "events": { "onhover": { "enable": true, "mode": ["repulse", "grab"] }, "onclick": { "enable": true, "mode": "push" } },
+        "modes": { "repulse": { "distance": 120, "duration": 0.4 }, "grab": { "distance": 180, "line_linked": { "opacity": 1 } }, "push": { "particles_nb": 3 } }
+      }
+    });
+
+    // Typed hero text
+    new Typed('.typed-text', { strings: ["DevOps Engineer", "Kubernetes | GitOps | Cloud Automation", "SRE & Observability"], typeSpeed: 50, backSpeed: 28, loop: true });
+
+    // -------- Optimized Search (titles + tags + badges) ----------
+    const items = [];
+
+    // Projects
+    document.querySelectorAll("#projects .project-card").forEach(card => {
+      const title = card.querySelector("h3")?.innerText || "";
+      const summary = card.querySelector("p")?.innerText || "";
+      const tags = [...card.querySelectorAll(".tag")].map(t => t.innerText);
+      items.push({ text: title, section: "#projects", cat: "Project" });
+      items.push({ text: summary, section: "#projects", cat: "Project" });
+      tags.forEach(t => items.push({ text: t, section: "#projects", cat: "Skill" }));
+    });
+
+    // Blogs
+    document.querySelectorAll("#blogs .card").forEach(card => {
+      const title = card.querySelector("h3")?.innerText || "";
+      const tags = [...card.querySelectorAll(".tag")].map(t => t.innerText);
+      items.push({ text: title, section: "#blogs", cat: "Blog" });
+      tags.forEach(t => items.push({ text: t, section: "#blogs", cat: "Skill" }));
+    });
+
+    // Skills
+    document.querySelectorAll("#skills .skill-badge").forEach(badge => {
+      items.push({ text: badge.innerText, section: "#skills", cat: "Skill" });
+    });
+
+    // Experience cards
+    document.querySelectorAll("#experience .card").forEach(card => {
+      const t = card.querySelector("h3")?.innerText || "";
+      items.push({ text: t, section: "#experience", cat: "Experience" });
+    });
+
+    // Certifications
+    document.querySelectorAll("#certifications .card").forEach(card => {
+      items.push({ text: card.innerText, section: "#certifications", cat: "Certification" });
+    });
+
+    const searchBar = document.getElementById('searchBar');
+    const suggestions = document.getElementById('suggestions');
+
+    function score(itemText, q) {
+      const t = itemText.toLowerCase();
+      if (t === q) return 100;
+      let s = 0;
+      if (t.startsWith(q)) s += 5;
+      if (t.includes(q)) s += 2;
+      // boost exact word matches
+      const words = t.split(/[^a-z0-9+.#-]+/);
+      if (words.includes(q)) s += 3;
+      return s;
+    }
+
+    let selIndex = -1;
+    function renderSuggestions(q) {
+      suggestions.innerHTML = "";
+      suggestions.classList.add("hidden");
+      if (!q) return;
+      const ql = q.toLowerCase();
+      const ranked = items
+        .map(it => ({ ...it, _s: score(it.text, ql) }))
+        .filter(it => it._s > 0);
+      // dedupe by text+cat
+      const seen = new Set();
+      const unique = [];
+      for (const r of ranked) {
+        const key = (r.cat + "|" + r.text).toLowerCase();
+        if (!seen.has(key)) { seen.add(key); unique.push(r); }
+      }
+      unique.sort((a, b) => b._s - a._s || a.cat.localeCompare(b.cat) || a.text.localeCompare(b.text));
+      const top = unique.slice(0, 10);
+      if (top.length === 0) return;
+      top.forEach((m, i) => {
+        const li = document.createElement("li");
+        li.innerHTML = `<span class="cat">${m.cat}:</span><span class="match">${m.text}</span>`;
+        li.addEventListener("mousedown", (e) => { e.preventDefault(); window.location = m.section; suggestions.classList.add("hidden"); });
+        suggestions.appendChild(li);
+      });
+      suggestions.classList.remove("hidden");
+      selIndex = -1;
+    }
+
+    // Typing animation for the "Ask DheeruBot" label
+    (function () {
+      if (!window.Typed) return; // safety: typed.js loaded
+      const phrases = [
+        "Ask DheeruBot ^_^",
+        "Ask About Skillset...",
+        "Ask About Projects...",
+        "Ask About POC's, Blogs...",
+        "Ask About Certifications..."
+      ];
+      new Typed(".ask-dheerubot .ask-text", {
+        strings: phrases,
+        typeSpeed: 60,
+        backSpeed: 30,
+        backDelay: 1400,
+        smartBackspace: true,
+        loop: true,
+        showCursor: true,
+        cursorChar: "▌"
+      });
+    })();
+
+
+    // Keyboard nav
+    searchBar.addEventListener("keydown", (e) => {
+      const itemsEl = suggestions.querySelectorAll("li");
+      if (!itemsEl.length) return;
+      if (e.key === "ArrowDown") { selIndex = (selIndex + 1) % itemsEl.length; updateActive(itemsEl); e.preventDefault(); }
+      else if (e.key === "ArrowUp") { selIndex = (selIndex - 1 + itemsEl.length) % itemsEl.length; updateActive(itemsEl); e.preventDefault(); }
+      else if (e.key === "Enter") {
+        if (selIndex >= 0) { itemsEl[selIndex].dispatchEvent(new Event("mousedown")); }
+        else { // filter cards on Enter
+          filterCards(searchBar.value.trim().toLowerCase());
+          suggestions.classList.add("hidden");
+        }
+      }
+      else if (e.key === "Escape") { suggestions.classList.add("hidden"); }
+    });
+    function updateActive(itemsEl) {
+      itemsEl.forEach(el => el.style.background = "");
+      if (selIndex >= 0) { itemsEl[selIndex].style.background = "var(--accent)"; itemsEl[selIndex].style.color = "#000"; }
+    }
+
+    // Debounce input
+    let tmr = null;
+    searchBar.addEventListener('input', function () {
+      const q = this.value.trim();
+      if (tmr) clearTimeout(tmr);
+      tmr = setTimeout(() => renderSuggestions(q), 120);
+      // live filter lightweight
+      filterCards(q.toLowerCase());
+    });
+    searchBar.addEventListener("blur", () => setTimeout(() => suggestions.classList.add("hidden"), 150));
+
+    // Filter visibility for specific sections
+    function filterCards(q) {
+      const scopes = [
+        '#projects .card',
+        '#blogs .card',
+        '#skills .skill-card',
+        '#experience .card',
+        '#certifications .card'
+      ];
+      scopes.forEach(sel => {
+        document.querySelectorAll(sel).forEach(el => {
+          if (!q) { el.style.display = ''; return; }
+          const text = el.innerText.toLowerCase();
+          el.style.display = text.includes(q) ? '' : 'none';
+        });
+      });
+    }
+
+    // Navbar hover sound (safe; ignore errors if file missing)
+    const hoverSound = new Audio("hover.mp3");
+    document.querySelectorAll("nav .links a").forEach(link => {
+      link.addEventListener("mouseenter", () => { try { hoverSound.currentTime = 0; hoverSound.play(); } catch (e) { } });
+    });
+
+    const profilePic = document.querySelector(".profile-pic");
+    profilePic.addEventListener("click", () => {
+      profilePic.classList.add("click-anim");
+      // remove class after animation ends so it can be reused
+      profilePic.addEventListener("animationend", () => {
+        profilePic.classList.remove("click-anim");
+      }, { once: true });
+    });
+    // --- NEW: Make skill badges clickable to trigger search ---
+    document.querySelectorAll(".skill-badge").forEach(badge => {
+      badge.addEventListener("click", () => {
+        const q = badge.innerText.trim();
+        searchBar.value = q;
+        renderSuggestions(q.toLowerCase());
+        filterCards(q.toLowerCase());
+        searchBar.focus();
+      });
+    });
+    // === Floating FA icons with collisions ===
+    (function () {
+      const host = document.querySelector('.float-icons');
+      if (!host) return;
+
+      // Cloud & automation icon set (Font Awesome 6)
+      const ICONS = [
+        // Vendors / brands with FA brand icons
+        'fab fa-aws', 'fab fa-google', 'fab fa-microsoft', 'fab fa-docker', 'fab fa-github', 'fab fa-gitlab',
+        // Generic tech
+        'fas fa-cloud', 'fas fa-cloud-arrow-up', 'fas fa-cloud-arrow-down', 'fas fa-cloud-bolt',
+        'fas fa-server', 'fas fa-database', 'fas fa-microchip', 'fas fa-network-wired',
+        'fas fa-diagram-project', 'fas fa-circle-nodes', 'fas fa-code-branch', 'fas fa-terminal',
+        'fas fa-code', 'fas fa-lock', 'fas fa-shield-halved', 'fas fa-gears', 'fas fa-robot', 'fas fa-sitemap', 'fas fa-cubes'
+      ];
+
+
+      // Tweak these safely
+      const MAX_ICONS = 90;          // soft cap (keep perf good). Increase if you want denser field.
+      const SPAWN_EVERY_MS = 1600;   // how often to add icons
+      const TTL_MIN = 30000, TTL_MAX = 90000;  // icons live 30–90s then recycle
+
+      const objs = [];
+      const rand = (a, b) => a + Math.random() * (b - a);
+
+      function spawn(n = 3) {
+        const W = window.innerWidth, H = window.innerHeight;
+        for (let i = 0; i < n; i++) {
+          const iClass = ICONS[(Math.random() * ICONS.length) | 0];
+          const el = document.createElement('i');
+          el.className = iClass + ' dyn';
+
+          // Mini sizes, some variety
+          const size = rand(12, 26);          // px
+          el.style.fontSize = size + 'px';
+
+          // start position anywhere
+          const x = rand(0, W), y = rand(0, H);
+
+          // mild speeds, both directions
+          const vx = (Math.random() < .5 ? -1 : 1) * rand(0.15, 0.75);
+          const vy = (Math.random() < .5 ? -1 : 1) * rand(0.15, 0.75);
+
+          host.appendChild(el);
+
+          objs.push({
+            el,
+            x, y, vx, vy,
+            r: size * 0.55,                        // approx radius for collision
+            ttl: rand(TTL_MIN, TTL_MAX),           // lifespan
+          });
+        }
+      }
+
+      // Pre-seed
+      spawn(40);
+
+      // Continuous spawn with soft cap
+      setInterval(() => {
+        if (objs.length < MAX_ICONS) spawn(2);
+      }, SPAWN_EVERY_MS);
+
+      // Physics loop (naive pairwise collisions; fine at this N)
+      let last = performance.now();
+      function tick(now) {
+        const dt = now - last; last = now;
+        const W = window.innerWidth, H = window.innerHeight;
+
+        // Update / boundary bounce / TTL
+        for (let i = 0; i < objs.length; i++) {
+          const o = objs[i];
+          o.x += o.vx * dt * 0.06;
+          o.y += o.vy * dt * 0.06;
+
+          // walls
+          if (o.x < 0) { o.x = 0; o.vx *= -1; }
+          if (o.y < 0) { o.y = 0; o.vy *= -1; }
+          if (o.x > W - o.r) { o.x = W - o.r; o.vx *= -1; }
+          if (o.y > H - o.r) { o.y = H - o.r; o.vy *= -1; }
+
+          // apply transform
+          o.el.style.transform = `translate(${o.x}px, ${o.y}px)`;
+
+          // age & recycle
+          o.ttl -= dt;
+          if (o.ttl <= 0) {
+            o.el.remove();
+            objs.splice(i, 1); i--;
+          }
+        }
+
+        // collisions (simple elastic swap + separation)
+        for (let i = 0; i < objs.length; i++) {
+          for (let j = i + 1; j < objs.length; j++) {
+            const a = objs[i], b = objs[j];
+            const dx = b.x - a.x, dy = b.y - a.y;
+            const minD = a.r + b.r;
+            const d2 = dx * dx + dy * dy;
+            if (d2 < minD * minD) {
+              const d = Math.sqrt(d2) || 1;
+              const ux = dx / d, uy = dy / d;
+
+              // separate overlap
+              const overlap = (minD - d) * 0.5;
+              a.x -= ux * overlap; a.y -= uy * overlap;
+              b.x += ux * overlap; b.y += uy * overlap;
+
+              // swap velocity components along collision normal (quick elastic)
+              const avn = a.vx * ux + a.vy * uy;
+              const bvn = b.vx * ux + b.vy * uy;
+              const dvn = bvn - avn;
+              a.vx += dvn * ux; a.vy += dvn * uy;
+              b.vx -= dvn * ux; b.vy -= dvn * uy;
+            }
+          }
+        }
+
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+
+      // Keep things sane on resize
+      window.addEventListener('resize', () => {
+        // nothing required; we read W/H each frame
+      });
+    })();
+
+    // Auto-create .tags from data-tags on blog cards
+    (function renderBlogTags() {
+      document.querySelectorAll('#blogs .card[data-tags]').forEach(card => {
+        const raw = card.getAttribute('data-tags') || '';
+        const tags = raw.split(',').map(t => t.trim()).filter(Boolean);
+        if (!tags.length) return;
+
+        // create container if missing
+        let wrap = card.querySelector('.tags');
+        if (!wrap) {
+          wrap = document.createElement('div');
+          wrap.className = 'tags';
+          card.appendChild(wrap);
+        }
+
+        // append tag pills (avoid duplicates)
+        const seen = new Set([...wrap.querySelectorAll('.tag')].map(t => t.textContent.toLowerCase()));
+        tags.forEach(t => {
+          if (seen.has(t.toLowerCase())) return;
+          const span = document.createElement('span');
+          span.className = 'tag';
+          span.textContent = t;
+          wrap.appendChild(span);
+        });
+      });
+    })();
+
+    // Make tag clicks filter the portfolio (and not navigate)
+    document.addEventListener('click', (e) => {
+      const tagEl = e.target.closest('.tag');
+      if (!tagEl) return;
+
+      // prevent the <a> card from navigating
+      e.preventDefault();
+      e.stopPropagation();
+
+      const q = tagEl.textContent.trim();
+      searchBar.value = q;
+      renderSuggestions(q.toLowerCase());
+      filterCards(q.toLowerCase());
+      searchBar.focus();
+    });
+
+
+
+  </script>
+</body>
+
+</html>
