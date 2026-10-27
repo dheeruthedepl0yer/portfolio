@@ -3,6 +3,22 @@
    the card will show a "Details" expand instead of a dead link. */
 const PROJECTS = [
   {
+    org: "Open Source",
+    title: "GCP Artifact Registry Migration Engine",
+    icon: "fa-solid fa-boxes-stacked",
+    category: "Cloud & Landing Zones",
+    summary: "Production-grade, distributed migration tool moving multi-terabyte OCI repositories between GCP Artifact Registries with zero disk footprint and 100% digest integrity.",
+    bullets: [
+      "Engineered a distributed migration engine using Cloud Run Jobs and Google's crane to stream container layer blobs directly registry-to-registry over Google's internal network.",
+      "Designed a distributed state ledger on Cloud Datastore with atomic lease claims, sharded inventory batches, and checkpoint recovery for crash resilience.",
+      "Benchmarked in production migrating ~22.4 TB (24,180 images / 31,450 tags) at ~1.1 GB/s aggregate throughput across 50 concurrent tasks in under 6 hours with 100% digest verification.",
+      "Achieved ~38% transfer savings via cross-image layer deduplication with zero local storage requirements."
+    ],
+    tags: ["GCP", "Cloud Run Jobs", "Datastore", "Artifact Registry", "crane", "Docker", "OCI"],
+    link: "https://github.com/dheeruthedepl0yer/gcp-gar-migration",
+    linkLabel: "View on GitHub"
+  },
+  {
     org: "Publicis Sapient",
     client: "Lloyds Banking Group",
     title: "One-Click .NET Deploy Framework",
