@@ -25,6 +25,10 @@ function buildSearchIndex() {
 
   CERTIFICATIONS.forEach(c => {
     items.push({ text: c.name, section: "#certifications", cat: "Certification" });
+    items.push({ text: `${c.issuer} — ${c.name}`, section: "#certifications", cat: "Certification" });
+    if (c.name.includes("ADK")) {
+      items.push({ text: "Google ADK", section: "#certifications", cat: "Certification" });
+    }
   });
 
   BRANDS.forEach(b => {
