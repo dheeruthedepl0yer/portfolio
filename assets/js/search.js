@@ -29,6 +29,10 @@ function buildSearchIndex() {
     if (c.name.includes("ADK")) {
       items.push({ text: "Google ADK", section: "#certifications", cat: "Certification" });
     }
+    if (c.name.includes("AB-100")) {
+      items.push({ text: "AB-100", section: "#certifications", cat: "Certification" });
+      items.push({ text: "Agentic AI Business Solutions Architect", section: "#certifications", cat: "Certification" });
+    }
   });
 
   BRANDS.forEach(b => {

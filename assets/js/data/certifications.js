@@ -5,8 +5,12 @@ const CERTIFICATIONS = [
   { name: "Professional Cloud Architect", issuer: "Google Cloud", icon: "fa-brands fa-google", color: "#4285F4", level: "Professional" },
   { name: "Professional Machine Learning Engineer", issuer: "Google Cloud", icon: "fa-brands fa-google", color: "#4285F4", level: "Professional" },
   { name: "Professional Cloud Security Engineer", issuer: "Google Cloud", icon: "fa-brands fa-google", color: "#4285F4", level: "Professional" },
+  { name: "Professional Cloud Network Engineer", issuer: "Google Cloud", icon: "fa-brands fa-google", color: "#4285F4", level: "Professional" },
   { name: "Associate Cloud Engineer", issuer: "Google Cloud", icon: "fa-brands fa-google", color: "#4285F4", level: "Associate" },
   { name: "Agent Development Kit (ADK)", issuer: "Google Cloud", icon: "fa-solid fa-robot", color: "#34A853", level: "Specialization" },
+
+  // Microsoft
+  { name: "AB-100: Agentic AI Business Solutions Architect", issuer: "Microsoft", icon: "fa-brands fa-microsoft", color: "#00A4EF", level: "Architect" },
 
   // Amazon Web Services
   { name: "Generative AI Developer Professional", issuer: "Amazon Web Services", icon: "fa-brands fa-aws", color: "#FF9900", level: "Professional" },
