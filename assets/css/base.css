@@ -1,12 +1,106 @@
+/* ================= Theme System & Base Variables ================= */
 :root {
   --accent: #00d4ff;
   --accent-soft: rgba(0, 212, 255, .15);
   --bg: #0f2027;
-  --card: #1b2735;
-  --cardH: #243447;
+  --bg-gradient: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  --card: rgba(27, 39, 53, .92);
+  --cardH: rgba(36, 52, 71, .95);
+  --card-border: rgba(0, 212, 255, .15);
   --text: #ffffff;
   --text-dim: rgba(255, 255, 255, .72);
+  --nav-bg: rgba(0, 0, 0, .45);
+  --nav-mobile-bg: rgba(15, 32, 39, .96);
+  --footer-bg: #0b1419;
+  --footer-border: rgba(255, 255, 255, .08);
+  --search-bg: rgba(255, 255, 255, .04);
+  --search-border: rgba(0, 212, 255, .25);
+  --search-suggest-bg: rgba(15, 32, 39, .95);
+  --tag-bg: #ffffff;
+  --tag-color: #000000;
+  --circuit-color: rgba(0, 212, 255, .3);
+  --float-icon-color: #ffffff;
+  --particle-color: #ffffff;
+  --particle-line: #6be0ff;
   --nav-h: 64px;
+}
+
+/* Light Theme */
+[data-theme="light"] {
+  --accent: #0070f3;
+  --accent-soft: rgba(0, 112, 243, .12);
+  --bg: #f5f7fb;
+  --bg-gradient: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 50%, #dbeafe 100%);
+  --card: rgba(255, 255, 255, .95);
+  --cardH: #ffffff;
+  --card-border: rgba(0, 112, 243, .2);
+  --text: #0f172a;
+  --text-dim: #475569;
+  --nav-bg: rgba(255, 255, 255, .8);
+  --nav-mobile-bg: rgba(255, 255, 255, .98);
+  --footer-bg: #e2e8f0;
+  --footer-border: rgba(15, 23, 42, .1);
+  --search-bg: rgba(255, 255, 255, .9);
+  --search-border: rgba(0, 112, 243, .35);
+  --search-suggest-bg: rgba(255, 255, 255, .98);
+  --tag-bg: #0f172a;
+  --tag-color: #ffffff;
+  --circuit-color: rgba(0, 112, 243, .22);
+  --float-icon-color: #0f172a;
+  --particle-color: #0070f3;
+  --particle-line: #93c5fd;
+}
+
+/* Cyberpunk / Synthwave Theme */
+[data-theme="cyberpunk"] {
+  --accent: #ff007f;
+  --accent-soft: rgba(255, 0, 127, .18);
+  --bg: #10002b;
+  --bg-gradient: linear-gradient(135deg, #10002b 0%, #240046 50%, #3c096c 100%);
+  --card: rgba(40, 12, 68, .92);
+  --cardH: rgba(60, 20, 100, .95);
+  --card-border: rgba(255, 0, 127, .3);
+  --text: #f8f9fa;
+  --text-dim: rgba(255, 220, 245, .78);
+  --nav-bg: rgba(16, 0, 43, .65);
+  --nav-mobile-bg: rgba(16, 0, 43, .98);
+  --footer-bg: #090017;
+  --footer-border: rgba(255, 0, 127, .25);
+  --search-bg: rgba(255, 255, 255, .05);
+  --search-border: rgba(255, 0, 127, .4);
+  --search-suggest-bg: rgba(26, 0, 54, .98);
+  --tag-bg: #ff007f;
+  --tag-color: #ffffff;
+  --circuit-color: rgba(255, 0, 127, .35);
+  --float-icon-color: #ff99c8;
+  --particle-color: #00f0ff;
+  --particle-line: #ff007f;
+}
+
+/* Hacker / Matrix Theme */
+[data-theme="matrix"] {
+  --accent: #00ff66;
+  --accent-soft: rgba(0, 255, 102, .15);
+  --bg: #050d08;
+  --bg-gradient: linear-gradient(135deg, #020804 0%, #06170d 50%, #0d2818 100%);
+  --card: rgba(10, 30, 18, .92);
+  --cardH: rgba(16, 46, 28, .95);
+  --card-border: rgba(0, 255, 102, .25);
+  --text: #e6ffe8;
+  --text-dim: rgba(190, 255, 205, .75);
+  --nav-bg: rgba(5, 13, 8, .7);
+  --nav-mobile-bg: rgba(5, 13, 8, .98);
+  --footer-bg: #020603;
+  --footer-border: rgba(0, 255, 102, .2);
+  --search-bg: rgba(0, 255, 102, .05);
+  --search-border: rgba(0, 255, 102, .35);
+  --search-suggest-bg: rgba(8, 22, 13, .98);
+  --tag-bg: #00ff66;
+  --tag-color: #020804;
+  --circuit-color: rgba(0, 255, 102, .3);
+  --float-icon-color: #00ff66;
+  --particle-color: #00ff66;
+  --particle-line: #104928;
 }
 
 * {
@@ -24,6 +118,7 @@ body {
   color: var(--text);
   overflow-x: hidden;
   position: relative;
+  transition: background .3s ease, color .3s ease;
 }
 
 a {
@@ -65,11 +160,12 @@ h2 {
 footer {
   padding: 24px;
   text-align: center;
-  background: #111;
-  border-top: 1px solid rgba(255, 255, 255, .08);
+  background: var(--footer-bg);
+  border-top: 1px solid var(--footer-border);
   position: relative;
   z-index: 1;
   color: var(--text-dim);
+  transition: background .3s ease, border-color .3s ease, color .3s ease;
 }
 
 footer a {

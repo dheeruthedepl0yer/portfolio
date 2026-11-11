@@ -3,8 +3,9 @@ function safeInit(fn) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  safeInit(initTheme);
   safeInit(renderAll);
-  safeInit(initParticles);
+  safeInit(() => initParticles(getCurrentTheme()));
   safeInit(initTypedText);
   safeInit(initFloatIcons);
   safeInit(initSearch);
@@ -88,4 +89,93 @@ function initRobotAvatar() {
       photo.addEventListener("animationend", () => photo.classList.remove("sharp-shake"), { once: true });
     }, 5000);
   }
+}
+
+/* ================= Theme Switching Logic ================= */
+const THEMES = {
+  dark: { label: "Dark", icon: "fa-solid fa-moon" },
+  light: { label: "Light", icon: "fa-solid fa-sun" },
+  cyberpunk: { label: "Cyberpunk", icon: "fa-solid fa-bolt" },
+  matrix: { label: "Matrix", icon: "fa-solid fa-terminal" }
+};
+
+function getCurrentTheme() {
+  return localStorage.getItem("dheeru_theme") || "dark";
+}
+
+function applyTheme(themeKey, persist = true) {
+  if (!THEMES[themeKey]) themeKey = "dark";
+  const theme = THEMES[themeKey];
+
+  if (themeKey === "dark") {
+    document.documentElement.removeAttribute("data-theme");
+  } else {
+    document.documentElement.setAttribute("data-theme", themeKey);
+  }
+
+  if (persist) {
+    try { localStorage.setItem("dheeru_theme", themeKey); } catch (_) {}
+  }
+
+  // Update button label and icon
+  const iconEl = document.getElementById("themeActiveIcon");
+  const labelEl = document.getElementById("themeActiveLabel");
+  if (iconEl) iconEl.className = `${theme.icon} theme-active-icon`;
+  if (labelEl) labelEl.textContent = theme.label;
+
+  // Update active state in menu
+  document.querySelectorAll(".theme-option").forEach(btn => {
+    const isActive = btn.dataset.theme === themeKey;
+    btn.classList.toggle("active", isActive);
+    btn.setAttribute("aria-selected", String(isActive));
+  });
+
+  // Re-init particles with theme colors if already loaded
+  if (window.particlesJS && window.pJSDom && window.pJSDom.length > 0) {
+    try {
+      window.pJSDom[0].pJS.fn.vendors.destroypJS();
+      window.pJSDom = [];
+    } catch (_) {}
+    safeInit(() => initParticles(themeKey));
+  }
+}
+
+function initTheme() {
+  const switchWrap = document.getElementById("themeSwitch");
+  const toggleBtn = document.getElementById("themeToggleBtn");
+  const menu = document.getElementById("themeMenu");
+  const current = getCurrentTheme();
+
+  applyTheme(current, false);
+
+  if (!switchWrap || !toggleBtn || !menu) return;
+
+  const toggleMenu = (open) => {
+    const isExpanded = open !== undefined ? open : !switchWrap.classList.contains("open");
+    switchWrap.classList.toggle("open", isExpanded);
+    toggleBtn.setAttribute("aria-expanded", String(isExpanded));
+  };
+
+  toggleBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
+
+  menu.querySelectorAll(".theme-option").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const theme = btn.dataset.theme;
+      applyTheme(theme, true);
+      toggleMenu(false);
+    });
+  });
+
+  // Close dropdown on outside click or Esc
+  document.addEventListener("click", (e) => {
+    if (!switchWrap.contains(e.target)) toggleMenu(false);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") toggleMenu(false);
+  });
 }

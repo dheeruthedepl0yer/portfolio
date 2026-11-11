@@ -16,6 +16,16 @@
   <link rel="stylesheet" href="assets/css/base.css" />
   <link rel="stylesheet" href="assets/css/animations.css" />
   <link rel="stylesheet" href="assets/css/components.css" />
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("dheeru_theme");
+        if (saved && saved !== "dark") {
+          document.documentElement.setAttribute("data-theme", saved);
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 
 <body>
@@ -26,9 +36,6 @@
   <!-- Navbar -->
   <nav>
     <div class="brand"><a href="#hero">DheeruTheDeployer</a></div>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
-      <i class="fa-solid fa-bars"></i>
-    </button>
     <div class="links" id="navLinks">
       <a href="#about">About</a>
       <a href="#brands">Brands</a>
@@ -41,6 +48,37 @@
       <a href="#poc">POCs</a>
       <a href="#game">Play</a>
       <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <!-- Theme Switcher -->
+      <div class="theme-switch" id="themeSwitch">
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Switch theme" aria-expanded="false" title="Switch Theme">
+          <i class="fa-solid fa-moon theme-active-icon" id="themeActiveIcon"></i>
+          <span class="theme-label" id="themeActiveLabel">Dark</span>
+          <i class="fa-solid fa-chevron-down theme-chevron"></i>
+        </button>
+        <div class="theme-menu" id="themeMenu" role="menu">
+          <button class="theme-option" data-theme="dark" role="menuitem">
+            <i class="fa-solid fa-moon"></i>
+            <span class="theme-name">Dark (Default)</span>
+          </button>
+          <button class="theme-option" data-theme="light" role="menuitem">
+            <i class="fa-solid fa-sun"></i>
+            <span class="theme-name">Light</span>
+          </button>
+          <button class="theme-option" data-theme="cyberpunk" role="menuitem">
+            <i class="fa-solid fa-bolt"></i>
+            <span class="theme-name">Cyberpunk</span>
+          </button>
+          <button class="theme-option" data-theme="matrix" role="menuitem">
+            <i class="fa-solid fa-terminal"></i>
+            <span class="theme-name">Matrix</span>
+          </button>
+        </div>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
     </div>
   </nav>
 

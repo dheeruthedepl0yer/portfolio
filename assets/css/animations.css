@@ -9,7 +9,7 @@
 .circuit-bg {
   position: fixed;
   inset: 0;
-  background-image: radial-gradient(circle at 2px 2px, rgba(0, 212, 255, 0.3) 1px, transparent 1px);
+  background-image: radial-gradient(circle at 2px 2px, var(--circuit-color, rgba(0, 212, 255, 0.3)) 1px, transparent 1px);
   background-size: 60px 60px;
   animation: circuitMove 20s linear infinite;
   z-index: 0;
@@ -30,8 +30,8 @@
 
 .float-icons i {
   position: absolute;
-  opacity: .18;
-  color: #fff;
+  opacity: .22;
+  color: var(--float-icon-color, #fff);
   will-change: transform;
 }
 
