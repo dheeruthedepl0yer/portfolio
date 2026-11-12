@@ -27,7 +27,16 @@ nav .brand a {
   background-clip: text;
   color: transparent;
   animation: heroShimmer 5s linear infinite, vibrate .3s linear infinite;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+nav .brand a .brand-icon {
+  font-size: 1.25rem;
+  color: var(--accent);
+  -webkit-text-fill-color: var(--accent);
+  animation: rotateGlow 6s linear infinite;
 }
 
 nav .links {
@@ -42,9 +51,25 @@ nav .links a {
   position: relative;
   color: var(--text);
   text-decoration: none;
-  margin: 0 10px;
+  margin: 0 9px;
   font-weight: 600;
+  font-size: .92rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   transition: transform .15s ease, color .3s ease;
+}
+
+nav .links a i {
+  font-size: .85rem;
+  color: var(--accent);
+  opacity: .85;
+  transition: transform .2s ease, opacity .2s ease;
+}
+
+nav .links a:hover i {
+  opacity: 1;
+  transform: scale(1.15);
 }
 
 nav .links a:after {
